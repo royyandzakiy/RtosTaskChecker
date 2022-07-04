@@ -1,8 +1,10 @@
 # RtosTaskChecker
 
-This is a simple library that can be used to check the size of tasks within an 
-RTOS style Arduino Framework based project. Note that this project uses Serial
-as it's buffer, if your project uses a different buffer please change accordingly
+This is a simple library that can be used to check the size of tasks within an RTOS style Arduino Framework based project. 
+
+A use case of mine is to define the optimal stack size when initially setting up an xTaskCreate statement, hence reducing the chance of stack overflow, yet not using too much memory.
+
+Note: that this project uses Serial as it's buffer, if your project uses a different buffer please change accordingly
 
 Here is The Example Code that you can run directly by creating a new project on the Arduino IDE
 ```
