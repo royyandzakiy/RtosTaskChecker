@@ -33,8 +33,6 @@ class RtosTaskSizeChecker {
 //========== EXAMPLE CODE ============
 /*
 
-#include "RtosTaskSizeChecker.h"
-
 //OUTPUT EXAMPLE:
 //Setup done
 //checkThisTask started; memoryUsed = 54% (656/1200 bytes); memoryRemining = 544 bytes;
@@ -46,10 +44,14 @@ class RtosTaskSizeChecker {
 //lastCheck = 5428 ms; memoryUsed = 82% (988/1200 bytes); memoryRemining = 212 bytes;
 //lastCheck = 6528 ms; memoryUsed = 82% (988/1200 bytes); memoryRemining = 212 bytes;
 
+#include "RtosTaskSizeChecker.h"
+
+#define TASK_SIZE_BYTE 1200
+
 // --- TASK TO BE CHECKED ---
 void checkThisTask(void*pv) {  
   long lastCheck = 0;
-  RtosTaskSizeChecker rtosTaskSizeChecker(1200);
+  RtosTaskSizeChecker rtosTaskSizeChecker(TASK_SIZE_BYTE);
 
   Serial.print("checkThisTask started; ");
   rtosTaskSizeChecker.printStatus();
@@ -74,7 +76,7 @@ void setup() {
   // 1200 is the number of bytes being allocated, this can be reduced based on the actual 
   // stack usage of this task, this can be found out by checking the remaining memory/stack 
   // using the uxTaskGetStackHighWaterMark function
-  xTaskCreate(checkThisTask, "checkThisTask", 1200, NULL, 1, NULL); // will start the lastCheck loop
+  xTaskCreate(checkThisTask, "checkThisTask", TASK_SIZE_BYTE, NULL, 1, NULL); // will start the lastCheck loop
 
   Serial.println("Setup done");
 }
